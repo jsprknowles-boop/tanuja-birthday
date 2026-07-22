@@ -1,0 +1,1474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width,initial-scale=1">
+
+<title>TANUJA_MAIN.mb</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+
+background:#262626;
+
+font-family:Arial,Helvetica,sans-serif;
+
+color:#ddd;
+
+overflow-x:hidden;
+
+}
+
+header{
+
+height:44px;
+
+background:#1d1d1d;
+
+display:flex;
+
+align-items:center;
+
+padding:0 15px;
+
+border-bottom:1px solid #111;
+
+}
+
+.logo{
+
+width:26px;
+
+height:26px;
+
+border-radius:4px;
+
+background:#11a8e8;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+font-weight:bold;
+
+color:white;
+
+margin-right:10px;
+
+}
+
+.title{
+
+font-size:13px;
+
+color:white;
+
+}
+
+.menu{
+
+background:#393939;
+
+padding:9px 15px;
+
+font-size:12px;
+
+white-space:nowrap;
+
+overflow:hidden;
+
+border-bottom:1px solid #222;
+
+}
+
+.main{
+
+display:grid;
+
+grid-template-columns:180px 1fr 180px;
+
+height:calc(100vh - 84px);
+
+}
+
+.left{
+
+background:#242424;
+
+border-right:1px solid #111;
+
+padding:10px;
+
+}
+
+.right{
+
+background:#242424;
+
+border-left:1px solid #111;
+
+padding:10px;
+
+}
+
+.viewport{
+
+background:
+
+linear-gradient(#ffffff08 1px,transparent 1px),
+
+linear-gradient(90deg,#ffffff08 1px,transparent 1px),
+
+#2b2b2b;
+
+background-size:30px 30px;
+
+display:flex;
+
+flex-direction:column;
+
+}
+
+.topbar{
+
+padding:12px;
+
+border-bottom:1px solid #111;
+
+background:#232323;
+
+font-size:12px;
+
+}
+
+.stage{
+
+color:#43c7ff;
+
+margin-right:15px;
+
+}
+
+.content{
+
+flex:1;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+padding:30px;
+
+}
+
+.card{
+
+width:min(760px,100%);
+
+background:#202020;
+
+border:1px solid #666;
+
+border-radius:10px;
+
+padding:30px;
+
+box-shadow:0 15px 45px rgba(0,0,0,.5);
+
+}
+
+h1{
+
+color:white;
+
+margin-bottom:20px;
+
+}
+
+button{
+
+width:100%;
+
+padding:16px;
+
+font-size:15px;
+
+font-weight:bold;
+
+background:#1696db;
+
+color:white;
+
+border:none;
+
+cursor:pointer;
+
+}
+
+button:disabled{
+
+background:#555;
+
+color:#aaa;
+
+cursor:default;
+
+}
+
+.terminal{
+
+background:#111;
+
+padding:16px;
+
+border-left:4px solid #22a8e8;
+
+font-family:Consolas,monospace;
+
+line-height:1.8;
+
+}
+
+.success{
+
+color:#77f28d;
+
+}
+
+.error{
+
+color:#ff6d6d;
+
+}
+
+.warning{
+
+color:#ffd56d;
+
+}
+
+.bar{
+
+height:11px;
+
+background:#444;
+
+border-radius:10px;
+
+overflow:hidden;
+
+margin-top:6px;
+
+}
+
+.fill{
+
+height:100%;
+
+width:0;
+
+background:linear-gradient(90deg,#1696db,#70ddff);
+
+transition:1s;
+
+}
+
+.metric{
+
+margin:18px 0;
+
+}
+
+.metricTop{
+
+display:flex;
+
+justify-content:space-between;
+
+}
+
+.progress{
+
+font-size:72px;
+
+font-weight:bold;
+
+text-align:center;
+
+color:#55cbff;
+
+}
+
+.photos{
+
+display:flex;
+
+flex-direction:column;
+
+gap:25px;
+
+margin-top:30px;
+
+}
+
+.photos img{
+
+width:100%;
+
+border-radius:10px;
+
+box-shadow:0 12px 30px rgba(0,0,0,.45);
+
+opacity:0;
+
+animation:fade .8s forwards;
+
+}
+
+@keyframes fade{
+
+from{
+
+opacity:0;
+
+transform:translateY(25px);
+
+}
+
+to{
+
+opacity:1;
+
+transform:none;
+
+}
+
+}
+
+.summary{
+
+margin-top:40px;
+
+background:#111;
+
+padding:18px;
+
+font-family:Consolas,monospace;
+
+line-height:1.9;
+
+}
+
+.final{
+
+font-size:42px;
+
+text-align:center;
+
+margin-top:30px;
+
+color:#ff9cbc;
+
+font-weight:bold;
+
+}
+
+.confetti{
+
+position:fixed;
+
+top:-20px;
+
+width:8px;
+
+height:14px;
+
+animation:fall 4s linear forwards;
+
+}
+
+@keyframes fall{
+
+to{
+
+transform:translate(var(--x),110vh) rotate(760deg);
+
+}
+
+}
+
+@media(max-width:900px){
+
+.main{
+
+grid-template-columns:1fr;
+
+}
+
+.left,.right{
+
+display:none;
+
+}
+
+}
+.center{
+text-align:center;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">
+
+M
+
+</div>
+
+<div class="title">
+
+Autodesk Maya 2026 — TANUJA_MAIN.mb
+
+</div>
+
+</header>
+
+<div class="menu">
+
+File Edit Create Select Modify Display Windows Rigging Animation Rendering FX
+
+</div>
+
+<div class="main">
+
+<div class="left">
+
+<b>Outliner</b>
+
+<br><br>
+
+persp
+
+<br>
+
+top
+
+<br>
+
+front
+
+<br>
+
+side
+
+<br>
+
+<b>TANUJA_MAIN</b>
+
+<br>
+
+geometry_GRP
+
+<br>
+
+rig_GRP
+
+<br>
+
+controls_GRP
+
+</div>
+
+<div class="viewport">
+
+<div class="topbar">
+
+<span class="stage" id="stageNumber">
+
+Stage 01 / 07
+
+</span>
+
+<b id="stageName">
+
+System Initialization
+
+</b>
+
+</div>
+
+<div class="content">
+
+<div class="card"
+
+id="content">
+
+</div>
+
+</div>
+
+<button
+
+id="nextButton"
+
+disabled>
+
+Initializing...
+
+</button>
+
+</div>
+
+<div class="right">
+
+<b>Channel Box</b>
+
+<br><br>
+
+Translate X
+
+<br>
+
+Translate Y
+
+<br>
+
+Translate Z
+
+<br><br>
+
+Rotate X
+
+<br>
+
+Rotate Y
+
+<br>
+
+Rotate Z
+
+<br><br>
+
+Scale
+
+</div>
+
+</div>
+
+<script>
+
+const content=document.getElementById("content");
+
+const button=document.getElementById("nextButton");
+
+const stageNumber=document.getElementById("stageNumber");
+
+const stageName=document.getElementById("stageName");
+
+const wait=ms=>new Promise(r=>setTimeout(r,ms));
+
+let stage=1;
+
+function setStage(number,name){
+
+stageNumber.innerHTML=
+
+"Stage "+String(number).padStart(2,"0")+" / 07";
+
+stageName.innerHTML=name;
+
+}
+
+function enableButton(text){
+
+button.disabled=false;
+
+button.innerHTML=text;
+
+}
+async function initialize(){
+
+content.innerHTML=`
+
+<div class="center">
+
+<div style="font-size:13px;color:#f3a43b;letter-spacing:3px;margin-bottom:12px;">
+AUTODESK MAYA 2026
+</div>
+
+<h1>Initializing Production Pipeline</h1>
+
+<div class="terminal" id="boot">
+
+maya&gt; Launching Autodesk Maya...
+
+</div>
+
+</div>
+
+`;
+
+const boot=document.getElementById("boot");
+
+const lines=[
+
+"Loading plugin : mayaHIK.mll ............. <span class='success'>OK</span>",
+
+"Loading plugin : Arnold Renderer ......... <span class='success'>OK</span>",
+
+"Loading plugin : Rigging Toolkit ......... <span class='success'>OK</span>",
+
+"Loading plugin : HumanIK ................. <span class='success'>OK</span>",
+
+"",
+
+"Workspace mounted",
+
+"C:/Projects/Tanuja/",
+
+"",
+
+"Opening scene : TANUJA_MAIN.mb",
+
+"",
+
+"Checking geometry integrity...",
+
+"Checking controller hierarchy...",
+
+"Checking animation layers...",
+
+"",
+
+"<span class='success'>Scene opened successfully.</span>",
+
+"<span class='success'>Production Pipeline Ready.</span>"
+
+];
+
+for(const line of lines){
+
+await wait(450);
+
+boot.innerHTML+="<br>"+line;
+
+}
+
+enableButton("Import Character →");
+
+}
+
+
+
+async function characterImport(){
+
+setStage(2,"Character Import");
+
+button.disabled=true;
+
+content.innerHTML=`
+
+<h1>Importing Character</h1>
+
+<div class="bar">
+
+<div class="fill" id="importFill"></div>
+
+</div>
+
+<div class="terminal" id="importText" style="margin-top:18px;">
+
+Preparing asset...
+
+</div>
+
+`;
+
+const fill=document.getElementById("importFill");
+
+const txt=document.getElementById("importText");
+
+await wait(200);
+
+fill.style.width="18%";
+
+await wait(500);
+
+txt.innerHTML+="<br>Reading mesh data...";
+
+fill.style.width="36%";
+
+await wait(600);
+
+txt.innerHTML+="<br>Importing textures...";
+
+fill.style.width="57%";
+
+await wait(650);
+
+txt.innerHTML+="<br>Creating material network...";
+
+fill.style.width="73%";
+
+await wait(700);
+
+txt.innerHTML+="<br>Optimizing scene...";
+
+fill.style.width="92%";
+
+await wait(900);
+
+fill.style.width="100%";
+
+txt.innerHTML+=`
+
+<br><br>
+
+<span class="success">
+
+Character imported successfully.
+
+</span>
+
+<br>
+
+Vertices : 184,226
+
+<br>
+
+Materials : 18
+
+<br>
+
+Rig Compatibility : 100%
+
+`;
+
+enableButton("Build Rig →");
+
+}
+
+
+
+async function rigBuild(){
+
+setStage(3,"Rig Build");
+
+button.disabled=true;
+
+content.innerHTML=`
+
+<h1>Building Production Rig</h1>
+
+<div class="terminal" id="rig">
+
+Creating skeleton...
+
+</div>
+
+`;
+
+const rig=document.getElementById("rig");
+
+const lines=[
+
+"Creating joint hierarchy...",
+
+"Generating IK chains...",
+
+"Generating FK controls...",
+
+"Binding controllers...",
+
+"Painting skin weights...",
+
+"Building facial controls...",
+
+"Creating custom attributes...",
+
+"<span class='success'>Rig compiled successfully.</span>"
+
+];
+
+for(const line of lines){
+
+await wait(600);
+
+rig.innerHTML+="<br>"+line;
+
+}
+
+enableButton("Run Personality Analysis →");
+
+}
+
+
+
+const metrics=[
+
+["Work Ethic",100],
+
+["Rigging Skill",100],
+
+["Creative Energy",96],
+
+["Music Dependency",91],
+
+["Chai Requirement",84],
+
+["Reply Speed",58],
+
+["Tolerance for Preet",81],
+
+["Random Laughter",73],
+
+["Sleep Schedule",12]
+
+];
+
+button.addEventListener("click",()=>{
+
+button.disabled=true;
+
+if(stage===1){
+
+stage=2;
+
+characterImport();
+
+}
+
+else if(stage===2){
+
+stage=3;
+
+rigBuild();
+
+}
+
+else if(stage===3){
+
+stage=4;
+
+personality();
+
+}
+
+else if(stage===4){
+
+stage=5;
+
+qa();
+
+}
+
+else if(stage===5){
+
+stage=6;
+
+render();
+
+}
+
+});
+
+initialize();
+async function personality(){
+
+setStage(4,"Personality Analysis");
+
+button.disabled=true;
+
+content.innerHTML=`
+
+<h1>Personality Analysis</h1>
+
+<div id="metrics"></div>
+
+<div class="terminal" id="analysisLog" style="margin-top:25px;">
+
+Initializing Personality Scanner...
+
+</div>
+
+`;
+
+const box=document.getElementById("metrics");
+
+for(const [name,value] of metrics){
+
+const row=document.createElement("div");
+
+row.className="metric";
+
+row.innerHTML=`
+
+<div class="metricTop">
+
+<span>${name}</span>
+
+<b>${value}%</b>
+
+</div>
+
+<div class="bar">
+
+<div class="fill"></div>
+
+</div>
+
+`;
+
+box.appendChild(row);
+
+await wait(120);
+
+row.querySelector(".fill").style.width=value+"%";
+
+await wait(420);
+
+}
+
+const log=document.getElementById("analysisLog");
+
+const lines=[
+
+"Cross-checking emotional database...",
+
+"Loading behavioural profile...",
+
+"Comparing with production standards...",
+
+"",
+
+"<span class='success'>Talent Level : ABOVE EXPECTED RANGE</span>",
+
+"<span class='success'>Creativity : VERIFIED</span>",
+
+"<span class='success'>Hard Work : VERIFIED</span>",
+
+"",
+
+"Searching hidden metadata...",
+
+"<span class='warning'>Encrypted asset detected.</span>",
+
+"<span class='error'>Access Denied (BDAY-022)</span>",
+
+"Attempting recovery..."
+
+];
+
+for(const line of lines){
+
+await wait(550);
+
+log.innerHTML+="<br>"+line;
+
+}
+
+enableButton("Run Production QA →");
+
+}
+
+
+
+async function qa(){
+
+setStage(5,"Production QA");
+
+button.disabled=true;
+
+content.innerHTML=`
+
+<h1>Production QA</h1>
+
+<div class="terminal" id="qaLog">
+
+Running validation...
+
+</div>
+
+`;
+
+const qa=document.getElementById("qaLog");
+
+const lines=[
+
+"Geometry Integrity ........ PASS",
+
+"Controller Stability ...... PASS",
+
+"IK/FK Matching ............ PASS",
+
+"Animation Layers .......... PASS",
+
+"Chai Dependency ......... ACCEPTABLE",
+
+"Rigging Skill ............. EXCELLENT",
+
+"Creative Output ........... EXCEPTIONAL",
+
+"",
+
+"<span class='success'>Production Approved.</span>"
+
+];
+
+for(const line of lines){
+
+await wait(520);
+
+qa.innerHTML+="<br>"+line;
+
+}
+
+enableButton("Start Final Render →");
+
+}
+
+
+
+async function render(){
+
+setStage(6,"Final Render");
+
+button.disabled=true;
+
+content.innerHTML=`
+
+<h1 style="text-align:center">
+
+Rendering Final Scene
+
+</h1>
+
+<div class="progress" id="percent">
+
+0%
+
+</div>
+
+<div class="bar">
+
+<div class="fill"
+
+id="renderFill">
+
+</div>
+
+</div>
+
+<div class="terminal"
+
+id="renderLog"
+
+style="margin-top:20px;">
+
+Preparing renderer...
+
+</div>
+
+`;
+
+const percent=document.getElementById("percent");
+
+const fill=document.getElementById("renderFill");
+
+const log=document.getElementById("renderLog");
+
+for(let i=0;i<=98;i+=2){
+
+percent.innerHTML=i+"%";
+
+fill.style.width=i+"%";
+
+if(i==10) log.innerHTML+="<br>Loading textures...";
+
+if(i==28) log.innerHTML+="<br>Calculating lighting...";
+
+if(i==46) log.innerHTML+="<br>Baking shadows...";
+
+if(i==62) log.innerHTML+="<br>Rendering reflections...";
+
+if(i==82) log.innerHTML+="<br>Applying post-processing...";
+
+await wait(70);
+
+}
+
+log.innerHTML+="<br><br>Final verification...";
+
+await wait(2000);
+
+percent.innerHTML="99%";
+
+fill.style.width="99%";
+
+await wait(1800);
+
+content.innerHTML=`
+
+<h1 class="error">
+
+FATAL RENDER ERROR
+
+</h1>
+
+<div class="terminal">
+
+EmotionalDataOverflowException
+
+<br><br>
+
+Unexpected encrypted asset detected.
+
+<br>
+
+Asset Name :
+
+<b>TANUJA_BIRTHDAY_FINAL</b>
+
+<br><br>
+
+Attempting Automatic Recovery...
+
+</div>
+
+`;
+
+await wait(2800);
+
+content.innerHTML=`
+
+<h1>
+
+Automatic Recovery
+
+</h1>
+
+<div class="terminal"
+
+id="recovery">
+
+Scanning autosave folder...
+
+</div>
+
+`;
+
+const recovery=document.getElementById("recovery");
+
+const recover=[
+
+"Searching hidden nodes...",
+
+"1 encrypted scene located.",
+
+"",
+
+"Recovered file : birthday_final.mb",
+
+"",
+
+"Decrypting...",
+
+"Opening recovered scene...",
+
+"<span class='success'>Recovery Successful.</span>"
+
+];
+
+for(const line of recover){
+
+await wait(700);
+
+recovery.innerHTML+="<br>"+line;
+
+}
+
+await wait(1200);
+
+birthday();
+
+}
+function birthday(){
+
+setStage(7,"Birthday Reveal");
+
+button.style.display="none";
+
+content.innerHTML=`
+
+<div style="text-align:center;">
+
+<div class="terminal" id="birthdayTerminal">
+
+Recovering hidden scene...
+
+</div>
+
+</div>
+
+`;
+
+recoverBirthday();
+
+}
+
+
+
+async function recoverBirthday(){
+
+const terminal=document.getElementById("birthdayTerminal");
+
+const lines=[
+
+"Searching autosave directory...",
+
+"Hidden scene located.",
+
+"",
+
+"<span class='success'>birthday_final.mb</span>",
+
+"",
+
+"Opening recovered scene...",
+
+"Loading textures...",
+
+"Loading memories...",
+
+"",
+
+"<span class='success'>Scene Loaded Successfully.</span>"
+
+];
+
+for(const line of lines){
+
+await wait(700);
+
+terminal.innerHTML+="<br>"+line;
+
+}
+
+await wait(1400);
+
+showBirthday();
+
+}
+
+
+
+async function showBirthday(){
+
+content.innerHTML=`
+
+<div style="text-align:center;">
+
+<h1>
+
+Happy 22nd Birthday ❤️
+
+</h1>
+
+<div id="message"
+
+style="line-height:1.9;font-size:18px;margin-top:30px;margin-bottom:40px;max-width:650px;margin-left:auto;margin-right:auto;">
+
+</div>
+
+<div class="photos"
+
+id="photos">
+
+</div>
+
+<div class="summary"
+
+id="summary"
+
+style="display:none;">
+
+Geometry ............. COMPLETE
+
+<br>
+
+Rig Build ............ COMPLETE
+
+<br>
+
+Controllers .......... COMPLETE
+
+<br>
+
+Animation ............ COMPLETE
+
+<br>
+
+Render ............... COMPLETE
+
+<br>
+
+Birthday ............. SUCCESS
+
+<br><br>
+
+<b>
+
+FINAL STATUS
+
+</b>
+
+<br>
+
+ONE OF ONE ❤️
+
+</div>
+
+<div class="final"
+
+id="finalText"
+
+style="display:none;">
+
+ONE OF ONE ❤️
+
+</div>
+
+</div>
+
+`;
+
+const msg=document.getElementById("message");
+
+const text=`No render engine could ever calculate how talented, hardworking and special you are.
+
+I hope this year brings you happiness, exciting opportunities, successful projects, good health, lots of chai, great music and hopefully... a little more sleep.
+
+I just wanted to wish you a very Happy Birthday.
+
+I hope this little project made you smile ❤️`;
+
+for(const ch of text){
+
+if(ch=="\n"){
+
+msg.innerHTML+="<br><br>";
+
+}else{
+
+msg.innerHTML+=ch;
+
+}
+
+await wait(25);
+
+}
+
+await wait(700);
+
+const photos=document.getElementById("photos");
+
+const files=[
+
+"photo1.jpeg",
+
+"photo2.jpeg",
+
+"photo3.jpeg"
+
+];
+
+for(const file of files){
+
+const img=document.createElement("img");
+
+img.src=file;
+
+img.onerror=function(){
+
+this.style.display="none";
+
+};
+
+photos.appendChild(img);
+
+await wait(1800);
+
+}
+
+await wait(1000);
+
+document.getElementById("summary").style.display="block";
+
+await wait(1500);
+
+document.getElementById("finalText").style.display="block";
+
+confetti();
+
+}
+
+
+
+function confetti(){
+
+for(let i=0;i<120;i++){
+
+const piece=document.createElement("div");
+
+piece.className="confetti";
+
+piece.style.left=Math.random()*100+"vw";
+
+piece.style.background=
+
+`hsl(${Math.random()*360},90%,60%)`;
+
+piece.style.setProperty(
+
+"--x",
+
+(Math.random()*300-150)+"px"
+
+);
+
+piece.style.animationDelay=
+
+Math.random()*2+"s";
+
+document.body.appendChild(piece);
+
+setTimeout(()=>piece.remove(),6000);
+
+}
+
+}
+
+</script>
+
+</body>
+
+</html>
